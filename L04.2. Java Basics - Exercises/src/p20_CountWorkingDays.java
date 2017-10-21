@@ -1,9 +1,6 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 
 public class p20_CountWorkingDays {
 
@@ -11,73 +8,63 @@ public class p20_CountWorkingDays {
 
         Scanner scanner = new Scanner(System.in);
 
-        String strStartDate = scanner.nextLine();
-        String strEndDate = scanner.nextLine();
-
         SimpleDateFormat formatDate = new SimpleDateFormat("dd-MM-yyyy");
 
-        Date startDate = formatDate.parse(strStartDate);
-        Date endDate = formatDate.parse(strEndDate);
+        Calendar currentDate = Calendar.getInstance();
+        currentDate.setTime(formatDate.parse(scanner.nextLine()));
 
-        Calendar startCal = Calendar.getInstance();
-        startCal.setTime(startDate);
+        Calendar endDate = Calendar.getInstance();
+        endDate.setTime(formatDate.parse(scanner.nextLine()));
 
-        Calendar endCal = Calendar.getInstance();
-        endCal.setTime(endDate);
+        List<Calendar> holidays = new ArrayList<>();
 
-        String currentYear = strStartDate.substring(6);
+        for (int i = 0; i < 11; i++) {
 
-        Date[] holidays = new Date[11];
+            holidays.add(Calendar.getInstance());
+        }
 
-        holidays[0] = formatDate.parse(String.format("01-01-%s", currentYear));
-        holidays[1] = formatDate.parse(String.format("03-03-%s", currentYear));
-        holidays[2] = formatDate.parse(String.format("01-05-%s", currentYear));
-        holidays[3] = formatDate.parse(String.format("06-05-%s", currentYear));
-        holidays[4] = formatDate.parse(String.format("24-05-%s", currentYear));
-        holidays[5] = formatDate.parse(String.format("06-09-%s", currentYear));
-        holidays[6] = formatDate.parse(String.format("22-09-%s", currentYear));
-        holidays[7] = formatDate.parse(String.format("01-10-%s", currentYear));
-        holidays[8] = formatDate.parse(String.format("24-12-%s", currentYear));
-        holidays[9] = formatDate.parse(String.format("25-12-%s", currentYear));
-        holidays[10] = formatDate.parse(String.format("26-12-%s", currentYear));
+        holidays.get(0).setTime(formatDate.parse("01-01-2016"));
+        holidays.get(1).setTime(formatDate.parse("03-03-2016"));
+        holidays.get(2).setTime(formatDate.parse("01-05-2016"));
+        holidays.get(3).setTime(formatDate.parse("06-05-2016"));
+        holidays.get(4).setTime(formatDate.parse("24-05-2016"));
+        holidays.get(5).setTime(formatDate.parse("06-09-2016"));
+        holidays.get(6).setTime(formatDate.parse("22-09-2016"));
+        holidays.get(7).setTime(formatDate.parse("01-10-2016"));
+        holidays.get(8).setTime(formatDate.parse("24-12-2016"));
+        holidays.get(9).setTime(formatDate.parse("25-12-2016"));
+        holidays.get(10).setTime(formatDate.parse("26-12-2016"));
 
-        int workDays = 0;
+        int workingDaysCount = 0;
 
         do {
+            if (currentDate.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY
+                    && currentDate.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
 
-            if (startCal.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY
-                    && startCal.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
+                boolean isHoliday = false;
 
-                Date date = startCal.getTime();
+                for (Calendar holiday : holidays) {
 
-                String year = "" + startCal.get(Calendar.YEAR);
+                    if (currentDate.get(Calendar.DAY_OF_MONTH)
+                            == holiday.get(Calendar.DAY_OF_MONTH)
+                            && currentDate.get(Calendar.MONTH)
+                            == holiday.get(Calendar.MONTH)) {
 
-                if (!year.equals(currentYear)) {
-
-                    currentYear = year;
-
-                    holidays[0] = formatDate.parse(String.format("01-01-%s", currentYear));
-                    holidays[1] = formatDate.parse(String.format("03-03-%s", currentYear));
-                    holidays[2] = formatDate.parse(String.format("01-05-%s", currentYear));
-                    holidays[3] = formatDate.parse(String.format("06-05-%s", currentYear));
-                    holidays[4] = formatDate.parse(String.format("24-05-%s", currentYear));
-                    holidays[5] = formatDate.parse(String.format("06-09-%s", currentYear));
-                    holidays[6] = formatDate.parse(String.format("22-09-%s", currentYear));
-                    holidays[7] = formatDate.parse(String.format("01-10-%s", currentYear));
-                    holidays[8] = formatDate.parse(String.format("24-12-%s", currentYear));
-                    holidays[9] = formatDate.parse(String.format("25-12-%s", currentYear));
-                    holidays[10] = formatDate.parse(String.format("26-12-%s", currentYear));
+                        isHoliday = true;
+                        break;
+                    }
                 }
 
-                if (!Arrays.asList(holidays).contains(date)) {
+                if (!isHoliday) {
 
-                    workDays++;
+                    workingDaysCount++;
                 }
             }
 
-            startCal.add(Calendar.DAY_OF_MONTH, 1);
-        } while (startCal.getTimeInMillis() <= endCal.getTimeInMillis());
+            currentDate.add(Calendar.DATE, 1);
 
-        System.out.println(workDays);
+        } while (currentDate.getTimeInMillis() <= endDate.getTimeInMillis());
+
+        System.out.println(workingDaysCount);
     }
 }
