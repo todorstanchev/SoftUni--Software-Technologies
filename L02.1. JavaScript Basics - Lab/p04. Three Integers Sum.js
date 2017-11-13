@@ -1,5 +1,6 @@
 function threeIntegersSum(arr) {
     let nums = arr[0].split(' ').map(Number);
+
     console.log(
         check(nums[0], nums[1], nums[2]) ||
         check(nums[0], nums[2], nums[1]) ||
@@ -8,9 +9,10 @@ function threeIntegersSum(arr) {
     );
 
     function check(num1, num2, sum) {
-        if (num1 + num2 != sum) {
+        if (num1 + num2 !== sum) {
             return false;
         }
+
         if (num1 > num2) {
             [num1, num2] = [num2, num1];
         }
@@ -19,4 +21,7 @@ function threeIntegersSum(arr) {
     }
 }
 
-threeIntegersSum(['0 0 0']);
+//console.log(threeIntegersSum(['8 15 7']));
+//console.log(threeIntegersSum(['-5 -3 -2']));
+//console.log(threeIntegersSum(['3 8 12']));
+//console.log(threeIntegersSum(['0 0 0']));

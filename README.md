@@ -1,1 +1,1 @@
-# SoftUni-Software-Technologies
+# SoftUni - Software-Technologies

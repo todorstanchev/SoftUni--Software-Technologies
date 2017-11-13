@@ -5,5 +5,5 @@ function sum(nums) {
     return sum;
 }
 
-console.log(sum(['66', '4']));
-;
+//console.log(sum(['10', '20']));
+//console.log(sum(['66', '4']));

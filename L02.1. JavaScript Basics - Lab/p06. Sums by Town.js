@@ -17,10 +17,7 @@ function calcSumByTown(arr) {
     }
 }
 
-let arr = ['{"town":"Sofia","income":200}',
-    '{"town":"Varna","income":120}',
-    '{"town":"Pleven","income":60}',
-    '{"town":"Varna","income":70}'
-];
-
-calcSumByTown(arr);
+//calcSumByTown(['{"town":"Sofia","income":200}',
+//    '{"town":"Varna","income":120}',
+//    '{"town":"Pleven","income":60}',
+//    '{"town":"Varna","income":70}']);
