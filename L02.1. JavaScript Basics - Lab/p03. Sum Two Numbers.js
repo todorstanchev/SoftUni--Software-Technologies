@@ -1,9 +1,10 @@
-function sum(nums) {
-    let num1 = Number(nums[0]);
-    let num2 = Number(nums[1]);
-    let sum = num1 + num2;
-    return sum;
+function sumTwoNumbers(arr) {
+
+    let firstNum = Number(arr[0]);
+    let secondNum = Number(arr[1]);
+
+    console.log(firstNum + secondNum);
 }
 
-//console.log(sum(['10', '20']));
-//console.log(sum(['66', '4']));
+//sumTwoNumbers(['10', '20']);
+//sumTwoNumbers(['66', '4']);
