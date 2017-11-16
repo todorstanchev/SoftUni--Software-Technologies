@@ -4,14 +4,15 @@ function printValues(arr) {
 
     let isSearchedKeyFound = false;
 
-    for (let index = 0; index < arr.length; index++) {
+    for (let element of arr) {
 
-        let arrTokens = arr[index].split(' ');
+        let elementTokens = element.split(' ');
 
-        let key = arrTokens[0];
-        let value = arrTokens[1];
+        let key = elementTokens[0];
 
         if (key === searchedKey) {
+
+            let value = elementTokens[1];
 
             console.log(value);
 
@@ -26,5 +27,5 @@ function printValues(arr) {
 }
 
 //printValues(['key value', 'key eulav', 'test tset', 'key']);
-printValues(['3 test', '3 test1', '4 test2', '4 test3', '4 test5', '4']);
+//printValues(['3 test', '3 test1', '4 test2', '4 test3', '4 test5', '4']);
 //printValues(['3 bla', '3 alb', '2']);

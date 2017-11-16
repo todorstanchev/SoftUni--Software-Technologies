@@ -2,11 +2,11 @@ function printObjects(arr) {
 
     let students = [];
 
-    for (let index = 0; index < arr.length; index++) {
+    for (let element of arr) {
 
-        let arrTokens = arr[index].split(' -> ');
+        let elementTokens = element.split(' -> ');
 
-        let [name, age, grade] = arrTokens;
+        let [name, age, grade] = elementTokens;
 
         let obj = {name: name, age: age, grade: grade};
 
@@ -14,10 +14,11 @@ function printObjects(arr) {
     }
 
     for (student of students) {
+
         console.log(`Name: ${student.name}`);
         console.log(`Age: ${student.age}`);
         console.log(`Grade: ${student.grade}`);
     }
 }
 
-printObjects(['Pesho -> 13 -> 6.00', 'Ivan -> 12 -> 5.57', 'Toni -> 13 -> 4.90']);
+//printObjects(['Pesho -> 13 -> 6.00', 'Ivan -> 12 -> 5.57', 'Toni -> 13 -> 4.90']);
