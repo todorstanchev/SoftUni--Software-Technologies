@@ -5,8 +5,10 @@ const hbsHelpers = require('../helpers/handlebarsHelpers');
 
 
 module.exports = (app, config) => {
+
     // View engine setup.
     app.set('views', path.join(config.rootFolder, '/views'));
+
     // app.engine('hbs', handlebars.engine);
     app.set('view engine', 'hbs');
 
@@ -17,6 +19,3 @@ module.exports = (app, config) => {
     // This makes the content in the "public" folder accessible for every user.
     app.use(express.static(path.join(config.rootFolder, 'public')));
 };
-
-
-
