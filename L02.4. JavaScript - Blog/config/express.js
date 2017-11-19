@@ -6,6 +6,7 @@ const session = require('express-session');
 const passport = require('passport');
 
 module.exports = (app, config) => {
+
     // View engine setup.
     app.set('views', path.join(config.rootFolder, '/views'));
     app.set('view engine', 'hbs');
@@ -25,7 +26,9 @@ module.exports = (app, config) => {
     app.use(passport.session());
 
     app.use((req, res, next) => {
-        if(req.user){
+
+        if (req.user) {
+
             res.locals.user = req.user;
         }
 
@@ -35,6 +38,3 @@ module.exports = (app, config) => {
     // This makes the content in the "public" folder accessible for every user.
     app.use(express.static(path.join(config.rootFolder, 'public')));
 };
-
-
-

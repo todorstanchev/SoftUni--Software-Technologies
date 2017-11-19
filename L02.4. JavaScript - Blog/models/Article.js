@@ -7,6 +7,6 @@ let articleSchema = mongoose.Schema({
     date: {type: Date, default: Date.now()}
 });
 
-const  Article = mongoose.model('Article', articleSchema);
+const Article = mongoose.model('Article', articleSchema);
 
 module.exports = Article;

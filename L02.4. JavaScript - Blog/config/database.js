@@ -2,12 +2,17 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 module.exports = (config) => {
+
     mongoose.connect(config.connectionString);
 
     let database = mongoose.connection;
+
     database.once('open', (error) => {
+
         if (error) {
+
             console.log(error);
+
             return;
         }
 
@@ -17,7 +22,3 @@ module.exports = (config) => {
     require('./../models/User');
     require('./../models/Article');
 };
-
-
-
-
