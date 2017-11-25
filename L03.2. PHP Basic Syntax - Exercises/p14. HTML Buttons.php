@@ -9,20 +9,22 @@
         }
     </style>
 </head>
+
 <body>
 <form>
     N: <input type="text" name="num"/>
     <input type="submit"/>
 </form>
+
 <?php
-if (!isset($_GET['num'])) {
-    exit(1);
-}
+if (isset($_GET['num'])) {
 
-$num = intval($_GET['num']);
+    $number = intval($_GET['num']);
 
-for ($index = 1; $index <= $num; $index++) {
-    echo "<button>$index</button>\n";
+    for ($index = 1; $index <= $number; $index++) {
+
+        echo "<button>$index</button>\n";
+    }
 }
 ?>
 </body>

@@ -12,12 +12,16 @@
         }
     </style>
 </head>
+
 <body>
 <?php
 for ($rowColor = 0; $rowColor <= 204; $rowColor += 51) {
+
     for ($colColor = $rowColor; $colColor <= $rowColor + 45; $colColor += 5) {
+
         echo "<div style='background-color: rgb($colColor, $colColor, $colColor)'></div>";
     }
+
     echo "<br/>";
 }
 ?>
