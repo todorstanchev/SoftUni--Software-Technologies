@@ -10,29 +10,37 @@ function fahrenheitToCelsius(float $fahrenheit): float
 }
 
 $msgAfterCelsius = "";
+
 if (isset($_GET['cel'])) {
-    $cel = floatval($_GET['cel']);
-    $fah = celsiusToFahrenheit($cel);
-    $msgAfterCelsius = "$cel &deg;C = $fah &deg;F";
+
+    $celsius = floatval($_GET['cel']);
+    $fahrenheit = celsiusToFahrenheit($celsius);
+
+    $msgAfterCelsius = "$celsius &deg;C = $fahrenheit &deg;F";
 }
 
 $msgAfterFahrenheit = "";
+
 if (isset($_GET['fah'])) {
-    $fah = floatval($_GET['fah']);
-    $cel = fahrenheitToCelsius($fah);
-    $msgAfterFahrenheit = "$fah &deg;F = $cel &deg;C";
-}
-?>
+
+    $fahrenheit = floatval($_GET['fah']);
+    $celsius = fahrenheitToCelsius($fahrenheit);
+
+    $msgAfterFahrenheit = "$fahrenheit &deg;F = $celsius &deg;C";
+} ?>
 
 <form>
     Celsius: <input type="text" name="cel"/>
+
     <input type="submit" value="Convert"/>
+
     <?= $msgAfterCelsius ?>
 </form>
 
 <form>
     Fahrenheit: <input type="text" name="fah"/>
+
     <input type="submit" value="Convert"/>
+
     <?= $msgAfterFahrenheit ?>
 </form>
-
