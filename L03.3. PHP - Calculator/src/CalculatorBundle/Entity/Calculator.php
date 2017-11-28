@@ -10,6 +10,16 @@ class Calculator
     private $leftOperand;
 
     /**
+     * @var float
+     */
+    private $rightOperand;
+
+    /**
+     * @var string
+     */
+    private $operator;
+
+    /**
      * Get left operand
      *
      * @return float
@@ -32,11 +42,6 @@ class Calculator
 
         return $this;
     }
-
-    /**
-     * @var float
-     */
-    private $rightOperand;
 
     /**
      * Get right operand
@@ -63,17 +68,9 @@ class Calculator
     }
 
     /**
-     * @var string
-     */
-    private $operator;
-
-    /**
      * Get operator
      *
      * @return float
-     */
-    /**
-     * @return string
      */
     public function getOperator()
     {

@@ -15,11 +15,24 @@
                     <div class="form-group">
                         <div class="col-sm-4 ">
                             <select class="form-control" name="calculator[operator]">
-                                <option value="+" {{ calculator is defined and calculator.operator == '+' ? 'selected' : '' }}>+</option>
-                                <option value="-" {{ calculator is defined and calculator.operator == '-' ? 'selected' : '' }}>-</option>
-                                <option value="*" {{ calculator is defined and calculator.operator == '*' ? 'selected' : '' }}>*</option>
-                                <option value="/" {{ calculator is defined and calculator.operator == '/' ? 'selected' : '' }}>/</option>
-                                <option value="^" {{ calculator is defined and calculator.operator == '^' ? 'selected' : '' }}>^</option>
+                                <option value="+" {{ calculator is defined and calculator.operator == '+' ? 'selected' : '' }}>
+                                    +
+                                </option>
+                                <option value="-" {{ calculator is defined and calculator.operator == '-' ? 'selected' : '' }}>
+                                    -
+                                </option>
+                                <option value="*" {{ calculator is defined and calculator.operator == '*' ? 'selected' : '' }}>
+                                    *
+                                </option>
+                                <option value="/" {{ calculator is defined and calculator.operator == '/' ? 'selected' : '' }}>
+                                    /
+                                </option>
+                                <option value="^" {{ calculator is defined and calculator.operator == '^' ? 'selected' : '' }}>
+                                    ^
+                                </option>
+                                <option value="%" {{ calculator is defined and calculator.operator == '%' ? 'selected' : '' }}>
+                                    %
+                                </option>
                             </select>
                         </div>
                     </div>

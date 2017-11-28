@@ -28,6 +28,7 @@ class CalculatorController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $leftOperand = $calculator->getLeftOperand();
             $rightOperand = $calculator->getRightOperand();
             $operator = $calculator->getOperator();
@@ -49,12 +50,23 @@ class CalculatorController extends Controller
                     break;
                 case '^':
                     $result = $leftOperand ** $rightOperand;
+                    break;
+                case '%':
+                    $result = $leftOperand % $rightOperand;
+                    break;
             }
 
             return $this->render('calculator/index.html.twig',
-                ['result' => $result, 'calculator' => $calculator, 'form' => $form->createView()]);
+                [
+                    'result' => $result,
+                    'calculator' => $calculator,
+                    'form' => $form->createView()
+                ]
+            );
         }
 
-        return $this->render('calculator/index.html.twig', ['form' => $form->createView()]);
+        return $this->render('calculator/index.html.twig',
+            ['form' => $form->createView()]
+        );
     }
 }
