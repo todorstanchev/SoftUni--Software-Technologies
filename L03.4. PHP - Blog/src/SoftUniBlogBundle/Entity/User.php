@@ -51,6 +51,10 @@ class User implements UserInterface
      */
     private $articles;
 
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -60,6 +64,16 @@ class User implements UserInterface
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 
     /**
@@ -77,13 +91,13 @@ class User implements UserInterface
     }
 
     /**
-     * Get email
+     * Get fullName
      *
      * @return string
      */
-    public function getEmail()
+    public function getFullName()
     {
-        return $this->email;
+        return $this->fullName;
     }
 
     /**
@@ -101,13 +115,13 @@ class User implements UserInterface
     }
 
     /**
-     * Get fullName
+     * Get password
      *
      * @return string
      */
-    public function getFullName()
+    public function getPassword()
     {
-        return $this->fullName;
+        return $this->password;
     }
 
     /**
@@ -125,13 +139,23 @@ class User implements UserInterface
     }
 
     /**
-     * Get password
-     *
-     * @return string
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function getPassword()
+    public function getArticles()
     {
-        return $this->password;
+        return $this->articles;
+    }
+
+    /**
+     * @param \SoftUniBlogBundle\Entity\Article $article
+     *
+     * @return User
+     */
+    public function addPost(Article $article)
+    {
+        $this->articles[] = $article;
+
+        return $this;
     }
 
     /**
@@ -192,30 +216,4 @@ class User implements UserInterface
     {
         return $this->fullName;
     }
-
-    /**
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getArticles()
-    {
-        return $this->articles;
-    }
-
-    /**
-     * @param \SoftUniBlogBundle\Entity\Article $article
-     *
-     * @return User
-     */
-    public function addPost(Article $article)
-    {
-        $this->articles[] = $article;
-
-        return $this;
-    }
-
-    public function __construct()
-    {
-        $this->articles = new ArrayCollection();
-    }
 }
-

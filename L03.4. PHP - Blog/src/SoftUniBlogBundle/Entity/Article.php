@@ -75,6 +75,16 @@ class Article
     }
 
     /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
      * Set title
      *
      * @param string $title
@@ -89,13 +99,13 @@ class Article
     }
 
     /**
-     * Get title
+     * Get content
      *
      * @return string
      */
-    public function getTitle()
+    public function getContent()
     {
-        return $this->title;
+        return $this->content;
     }
 
     /**
@@ -113,13 +123,13 @@ class Article
     }
 
     /**
-     * Get content
+     * Get dateAdded
      *
-     * @return string
+     * @return \DateTime
      */
-    public function getContent()
+    public function getDateAdded()
     {
-        return $this->content;
+        return $this->dateAdded;
     }
 
     /**
@@ -137,13 +147,16 @@ class Article
     }
 
     /**
-     * Get dateAdded
-     *
-     * @return \DateTime
+     * @return string
      */
-    public function getDateAdded()
+    public function getSummary()
     {
-        return $this->dateAdded;
+        if ($this->summary === null) {
+
+            $this->setSummary();
+        }
+
+        return $this->summary;
     }
 
     /**
@@ -155,15 +168,11 @@ class Article
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getSummary()
+    public function getAuthorID()
     {
-        if ($this->summary === null) {
-            $this->setSummary();
-        }
-
-        return $this->summary;
+        return $this->authorID;
     }
 
     /**
@@ -179,11 +188,11 @@ class Article
     }
 
     /**
-     * @return int
+     * @return \SoftUniBlogBundle\Entity\User
      */
-    public function getAuthorID()
+    public function getAuthor()
     {
-        return $this->authorID;
+        return $this->author;
     }
 
     /**
@@ -198,17 +207,8 @@ class Article
         return $this;
     }
 
-    /**
-     * @return \SoftUniBlogBundle\Entity\User
-     */
-    public function getAuthor()
-    {
-        return $this->author;
-    }
-
     public function __construct()
     {
         $this->dateAdded = new \DateTime('now');
     }
 }
-
