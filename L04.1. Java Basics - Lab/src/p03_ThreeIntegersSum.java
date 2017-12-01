@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class p03_ThreeIntegersSum {
@@ -6,36 +7,33 @@ public class p03_ThreeIntegersSum {
 
         Scanner scanner = new Scanner(System.in);
 
-        String[] input = scanner.nextLine().split("\\s+");
+        int[] numbers = Arrays.stream(scanner.nextLine().split(" "))
+                .mapToInt(Integer::parseInt)
+                .toArray();
 
-        int[] numbers = new int[input.length];
+        int firstNum = numbers[0];
+        int secondNum = numbers[1];
+        int thirdNum = numbers[2];
 
-        for (int index = 0; index < input.length; index++) {
-            numbers[index] = Integer.parseInt(input[index]);
-        }
-
-        int num1 = numbers[0];
-        int num2 = numbers[1];
-        int num3 = numbers[2];
-
-        if (!checkThreeIntSum(num1, num2, num3)
-                && !checkThreeIntSum(num1, num3, num2)
-                && !checkThreeIntSum(num2, num3, num1)) {
+        if (!checkThreeIntSum(firstNum, secondNum, thirdNum)
+                && !checkThreeIntSum(firstNum, thirdNum, secondNum)
+                && !checkThreeIntSum(secondNum, thirdNum, firstNum)) {
 
             System.out.println("No");
         }
     }
 
-    private static boolean checkThreeIntSum(int num1, int num2, int num3) {
+    private static boolean checkThreeIntSum(int firstNum, int secondNum, int thirdNum) {
 
-        if (num1 + num2 != num3) {
+        if (firstNum + secondNum != thirdNum) {
+
             return false;
         }
 
-        int smallerNum = Math.min(num1, num2);
-        int biggerNum = Math.max(num1, num2);
+        int smallerNum = Math.min(firstNum, secondNum);
+        int biggerNum = Math.max(firstNum, secondNum);
 
-        System.out.printf("%d + %d = %d", smallerNum, biggerNum, num3);
+        System.out.printf("%d + %d = %d%n", smallerNum, biggerNum, thirdNum);
 
         return true;
     }

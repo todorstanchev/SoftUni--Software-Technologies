@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class p05_SymmetricNumbers {
@@ -8,18 +10,22 @@ public class p05_SymmetricNumbers {
 
         int number = Integer.parseInt(scanner.nextLine());
 
+        List<String> symmetricNumbers = new ArrayList<>();
+
         for (int index = 1; index <= number; index++) {
 
             String strNum = Integer.toString(index);
 
-            if (isNumberSymetric(strNum)) {
+            if (isNumberSymmetric(strNum)) {
 
-                System.out.printf(strNum + " ");
+                symmetricNumbers.add(strNum);
             }
         }
+
+        System.out.println(String.join(" ", symmetricNumbers));
     }
 
-    private static boolean isNumberSymetric(String strNum) {
+    private static boolean isNumberSymmetric(String strNum) {
 
         for (int pos = 0; pos < strNum.length() / 2; pos++) {
 

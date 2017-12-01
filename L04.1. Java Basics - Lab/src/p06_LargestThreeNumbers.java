@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class p06_LargestThreeNumbers {
@@ -7,17 +8,10 @@ public class p06_LargestThreeNumbers {
 
         Scanner scanner = new Scanner(System.in);
 
-        int[] numbers = Arrays
-                .stream(scanner.nextLine().split(" "))
-                .mapToInt(Integer::parseInt).toArray();
-
-        Arrays.sort(numbers);
-
-        int count = Math.min(3, numbers.length);
-
-        for (int index = 0; index < count; index++) {
-
-            System.out.println(numbers[numbers.length - 1 - index]);
-        }
+        Arrays.stream(scanner.nextLine().split(" "))
+                .map(Integer::parseInt)
+                .sorted(Comparator.reverseOrder())
+                .limit(3)
+                .forEach(System.out::println);
     }
 }

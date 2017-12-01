@@ -6,17 +6,17 @@ public class p04_SumNIntegers {
 
         Scanner scanner = new Scanner(System.in);
 
-        int linesNumber = Integer.parseInt(scanner.nextLine());
+        int linesCount = Integer.parseInt(scanner.nextLine());
 
         int sum = 0;
 
-        for (int index = 0; index < linesNumber; index++) {
+        for (int index = 0; index < linesCount; index++) {
 
             int currentNumber = Integer.parseInt(scanner.nextLine());
 
             sum += currentNumber;
         }
 
-        System.out.printf("Sum = %d", sum);
+        System.out.printf("Sum = %d%n", sum);
     }
 }

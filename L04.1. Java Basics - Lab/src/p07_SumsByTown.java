@@ -18,16 +18,11 @@ public class p07_SumsByTown {
             String town = inputTokens[0].trim();
             double income = Double.parseDouble(inputTokens[1].trim());
 
-            if (!townsIncomes.containsKey(town)) {
+            townsIncomes.putIfAbsent(town, 0.0);
 
-                townsIncomes.put(town, income);
-            } else {
-                townsIncomes.put(town, townsIncomes.get(town) + income);
-            }
+            townsIncomes.put(town, townsIncomes.get(town) + income);
         }
 
-        for (String town : townsIncomes.keySet()) {
-            System.out.println(town + " -> " + townsIncomes.get(town));
-        }
+        townsIncomes.forEach((key, value) -> System.out.println(key + " -> " + value));
     }
 }

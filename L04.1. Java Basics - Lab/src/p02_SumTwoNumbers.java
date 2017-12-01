@@ -5,8 +5,12 @@ public class p02_SumTwoNumbers {
     public static void main(String[] args) {
 
         Scanner scan = new Scanner(System.in);
-        double num1 = Double.parseDouble(scan.nextLine());
-        double num2 = Double.parseDouble(scan.nextLine());
-        System.out.printf("%.2f", num1 + num2);
+
+        double firstNum = Double.parseDouble(scan.nextLine());
+        double secondNum = Double.parseDouble(scan.nextLine());
+
+        double sum = firstNum + secondNum;
+
+        System.out.printf("%.2f%n", sum);
     }
 }
