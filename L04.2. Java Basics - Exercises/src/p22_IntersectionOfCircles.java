@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class p22_IntersectionOfCircles {
@@ -7,34 +6,15 @@ public class p22_IntersectionOfCircles {
 
         Scanner scanner = new Scanner(System.in);
 
-        double[] firstCircleTokens = readInput(scanner);
-        double[] secondCircleTokens = readInput(scanner);
+        String[] c1Args = scanner.nextLine().split(" ");
+        String[] c2Args = scanner.nextLine().split(" ");
 
-        double x1 = firstCircleTokens[0];
-        double y1 = firstCircleTokens[1];
-        double radius1 = firstCircleTokens[2];
+        int xS = Integer.parseInt(c1Args[0]) - Integer.parseInt(c2Args[0]);
+        int yS = Integer.parseInt(c1Args[1]) - Integer.parseInt(c2Args[1]);
+        int radiuses = Integer.parseInt(c1Args[2]) + Integer.parseInt(c2Args[2]);
 
-        double x2 = secondCircleTokens[0];
-        double y2 = secondCircleTokens[1];
-        double radius2 = secondCircleTokens[2];
+        double centersDistance = Math.sqrt((Math.pow(xS, 2)) + (Math.pow(yS, 2)));
 
-        double distanceBetweenCenters =
-                Math.sqrt((Math.pow(x2 - x1, 2)) + (Math.pow(y2 - y1, 2)));
-
-        System.out.println(
-                distanceBetweenCenters <= radius1 + radius2
-                        ? "Yes"
-                        : "No"
-        );
-    }
-
-    private static double[] readInput(Scanner scanner) {
-
-        double[] inputTokens = Arrays
-                .stream(scanner.nextLine().split(" "))
-                .mapToDouble(Double::parseDouble)
-                .toArray();
-
-        return inputTokens;
+        System.out.println(radiuses >= centersDistance ? "Yes" : "No");
     }
 }

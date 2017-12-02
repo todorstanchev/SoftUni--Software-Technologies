@@ -6,8 +6,8 @@ public class p02_BooleanVariable {
 
         Scanner scanner = new Scanner(System.in);
 
-        boolean isBoolean = Boolean.parseBoolean(scanner.nextLine());
+        boolean isBoolTrue = Boolean.parseBoolean(scanner.nextLine());
 
-        System.out.println(isBoolean ? "Yes" : "No");
+        System.out.println(isBoolTrue ? "Yes" : "No");
     }
 }

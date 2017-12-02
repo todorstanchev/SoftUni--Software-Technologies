@@ -14,14 +14,14 @@ public class p17_ChangeToUppercase {
             int endIndex = text.indexOf("</upcase>");
 
             if (startIndex == -1 || endIndex == -1) {
-
                 break;
             }
 
-            String temp = text.substring(startIndex + 8, endIndex);
-            String upperTemp = temp.toUpperCase();
+            String strToRemove = text.substring(startIndex, endIndex + 9);
 
-            text = text.replaceAll("<upcase>" + temp + "</upcase>", upperTemp);
+            String replacement = text.substring(startIndex + 8, endIndex).toUpperCase();
+
+            text = text.replaceAll(strToRemove, replacement);
         }
 
         System.out.println(text);

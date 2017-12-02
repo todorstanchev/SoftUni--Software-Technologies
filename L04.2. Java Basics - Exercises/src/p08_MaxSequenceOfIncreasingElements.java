@@ -7,14 +7,15 @@ public class p08_MaxSequenceOfIncreasingElements {
 
         Scanner scanner = new Scanner(System.in);
 
-        int[] numbers = Arrays.stream(scanner.nextLine().split(" "))
+        int[] numbers = Arrays.stream(scanner.nextLine()
+                .split(" "))
                 .mapToInt(Integer::parseInt)
                 .toArray();
 
-        int startPosition = 0;
         int length = 1;
         int maxLength = 1;
         int startElement = 0;
+        int startPosition = 0;
 
         for (int index = 0; index < numbers.length - 1; index++) {
 
@@ -31,7 +32,6 @@ public class p08_MaxSequenceOfIncreasingElements {
                     startElement = startPosition;
                 }
             } else {
-
                 length = 1;
                 startPosition = index + 1;
             }
@@ -39,9 +39,7 @@ public class p08_MaxSequenceOfIncreasingElements {
 
         for (int pos = startElement; pos < startElement + maxLength; pos++) {
 
-            System.out.printf("%d ", numbers[pos]);
+            System.out.print(numbers[pos] + " ");
         }
-
-        System.out.println();
     }
 }

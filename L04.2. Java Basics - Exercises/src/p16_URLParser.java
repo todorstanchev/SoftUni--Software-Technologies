@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class p16_URLParser {
@@ -19,10 +18,12 @@ public class p16_URLParser {
             protocol = url.substring(0, index);
 
             serverResource = url.substring(index + 3);
-        } else {
 
+        } else {
             serverResource = url;
         }
+
+        System.out.printf("[protocol] = \"%s\"%n", protocol);
 
         index = serverResource.indexOf('/');
 
@@ -34,13 +35,12 @@ public class p16_URLParser {
             server = serverResource.substring(0, index);
 
             resource = serverResource.substring(index + 1);
-        } else {
 
+        } else {
             server = serverResource;
         }
 
-        System.out.println(String.format("[protocol] = \"%s\"", protocol));
-        System.out.println(String.format("[server] = \"%s\"", server));
-        System.out.println(String.format("[resource] = \"%s\"", resource));
+        System.out.printf("[server] = \"%s\"%n", server);
+        System.out.printf("[resource] = \"%s\"%n", resource);
     }
 }

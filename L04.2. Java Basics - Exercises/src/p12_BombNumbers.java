@@ -1,6 +1,5 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class p12_BombNumbers {
 
@@ -8,39 +7,31 @@ public class p12_BombNumbers {
 
         Scanner scanner = new Scanner(System.in);
 
-        int[] numbers = Arrays.stream(scanner.nextLine()
+        List<Integer> numbers = Arrays.stream(scanner.nextLine()
                 .split(" "))
-                .mapToInt(Integer::parseInt)
-                .toArray();
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
 
-        ArrayList<Integer> nums = new ArrayList<>();
+        String[] bombTokens = scanner.nextLine().split(" ");
 
-        for (int pos = 0; pos < numbers.length; pos++) {
+        int bombNumber = Integer.parseInt(bombTokens[0]);
+        int powerOfBomb = Integer.parseInt(bombTokens[1]);
 
-            nums.add(numbers[pos]);
-        }
+        while (true) {
 
-        int[] bombingInput = Arrays.stream(scanner.nextLine()
-                .split(" "))
-                .mapToInt(Integer::parseInt)
-                .toArray();
+            int bombIndex = numbers.indexOf(bombNumber);
 
-        int bombNumber = bombingInput[0];
-        int powerOfBomb = bombingInput[1];
-
-        for (int index = 0; index < nums.size(); index++) {
-            if (nums.get(index) == bombNumber) {
-                int leftIndex = Math.max(index - powerOfBomb, 0);
-                int rightIndex = Math.min(index + powerOfBomb, nums.size() - 1);
-
-                nums.subList(leftIndex, rightIndex + 1).clear();
-
-                index = -1;
+            if (bombIndex == -1) {
+                break;
             }
+
+            int leftIndex = Math.max(bombIndex - powerOfBomb, 0);
+            int rightIndex = Math.min(bombIndex + powerOfBomb, numbers.size() - 1);
+
+            numbers.subList(leftIndex, rightIndex + 1).clear();
         }
 
-        int sum = nums
-                .stream()
+        int sum = numbers.stream()
                 .mapToInt(Integer::intValue)
                 .sum();
 

@@ -13,14 +13,14 @@ public class p14_FitStringIn20Chars {
             System.out.println(str.substring(0, 20));
         } else {
 
-            int padding = 20 - str.length();
+            System.out.print(str);
 
-            for (int index = 0; index < padding; index++) {
+            int length = 20 - str.length();
 
-                str += '*';
+            for (int index = 0; index < length; index++) {
+
+                System.out.print('*');
             }
-
-            System.out.println(str);
         }
     }
 }

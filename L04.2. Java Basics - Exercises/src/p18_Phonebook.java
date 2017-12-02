@@ -7,33 +7,35 @@ public class p18_Phonebook {
 
         Scanner scanner = new Scanner(System.in);
 
-        String[] input = scanner.nextLine().split(" ");
-
-        String command = input[0];
-
         LinkedHashMap<String, String> phonebook = new LinkedHashMap<>();
 
-        while (!command.equals("END")) {
+        while (true) {
 
-            String name = input[1];
+            String[] inputTokens = scanner.nextLine().split(" ");
 
-            switch (command) {
+            String command = inputTokens[0];
 
-                case "A":
-                    String phoneNumber = input[2];
-                    phonebook.put(name, phoneNumber);
-                    break;
-                case "S":
-                    System.out.println(
-                            phonebook.containsKey(name)
-                                    ? String.format("%s -> %s", name, phonebook.get(name))
-                                    : String.format("Contact %s does not exist.", name));
-                    break;
+            if (command.equals("END")) {
+                break;
             }
 
-            input = scanner.nextLine().split(" ");
+            String name = inputTokens[1];
+            String phoneNumber = "";
 
-            command = input[0];
+            if (command.equals("A")) {
+
+                phoneNumber = inputTokens[2];
+                phonebook.put(name, phoneNumber);
+
+            } else if (phonebook.containsKey(name)) {
+
+                phoneNumber = phonebook.get(name);
+
+                System.out.println(name + " -> " + phoneNumber);
+
+            } else {
+                System.out.println("Contact " + name + " does not exist.");
+            }
         }
     }
 }

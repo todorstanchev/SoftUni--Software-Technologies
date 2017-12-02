@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class p07_MaxSequenceOfEqualElements {
@@ -7,39 +6,35 @@ public class p07_MaxSequenceOfEqualElements {
 
         Scanner scanner = new Scanner(System.in);
 
-        int[] numbers = Arrays.stream(scanner.nextLine().split(" "))
-                .mapToInt(Integer::parseInt)
-                .toArray();
+        String[] elements = scanner.nextLine().split(" ");
 
         int currentLength = 1;
         int bestLength = 1;
-        int bestStart = numbers[0];
 
-        for (int index = 0; index < numbers.length - 1; index++) {
+        String bestStart = elements[0];
 
-            int currentNumber = numbers[index];
-            int nextNumber = numbers[index + 1];
+        for (int index = 0; index < elements.length - 1; index++) {
 
-            if (currentNumber == nextNumber) {
+            String currentElement = elements[index];
+            String nextElement = elements[index + 1];
+
+            if (currentElement.equals(nextElement)) {
 
                 currentLength++;
 
                 if (currentLength > bestLength) {
 
                     bestLength = currentLength;
-                    bestStart = numbers[index];
+                    bestStart = currentElement;
                 }
             } else {
-
                 currentLength = 1;
             }
         }
 
         for (int pos = 0; pos < bestLength; pos++) {
 
-            System.out.printf("%d ", bestStart);
+            System.out.print(bestStart + " ");
         }
-
-        System.out.println();
     }
 }

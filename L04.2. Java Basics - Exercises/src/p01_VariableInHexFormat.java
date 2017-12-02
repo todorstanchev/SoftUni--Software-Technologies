@@ -6,8 +6,8 @@ public class p01_VariableInHexFormat {
 
         Scanner scanner = new Scanner(System.in);
 
-        int decimalNumber = Integer.parseInt(scanner.nextLine(), 16);
+        int decimalNum = Integer.parseInt(scanner.nextLine(), 16);
 
-        System.out.println(decimalNumber);
+        System.out.println(decimalNum);
     }
 }

@@ -7,13 +7,17 @@ public class p19_PhonebookUpgrade {
 
         Scanner scanner = new Scanner(System.in);
 
-        String[] input = scanner.nextLine().split(" ");
-
-        String command = input[0];
-
         TreeMap<String, String> phonebook = new TreeMap<>();
 
-        while (!command.equals("END")) {
+        while (true) {
+
+            String[] inputTokens = scanner.nextLine().split(" ");
+
+            String command = inputTokens[0];
+
+            if (command.equals("END")) {
+                break;
+            }
 
             String name = "";
             String phoneNumber = "";
@@ -22,28 +26,30 @@ public class p19_PhonebookUpgrade {
 
                 for (String personName : phonebook.keySet()) {
 
-                    System.out.println(
-                            String.format("%s -> %s", personName, phonebook.get(personName)));
+                    phoneNumber = phonebook.get(personName);
+
+                    System.out.println(personName + " -> " + phoneNumber);
                 }
-            } else if (command.equals("S")) {
+            } else if (command.equals("A")) {
 
-                name = input[1];
-
-                System.out.println(
-                        phonebook.containsKey(name)
-                                ? String.format("%s -> %s", name, phonebook.get(name))
-                                : String.format("Contact %s does not exist.", name));
+                name = inputTokens[1];
+                phoneNumber = inputTokens[2];
+                phonebook.put(name, phoneNumber);
 
             } else {
 
-                name = input[1];
-                phoneNumber = input[2];
-                phonebook.put(name, phoneNumber);
+                name = inputTokens[1];
+
+                if (phonebook.containsKey(name)) {
+
+                    phoneNumber = phonebook.get(name);
+
+                    System.out.println(name + " -> " + phoneNumber);
+
+                } else {
+                    System.out.println("Contact " + name + " does not exist.");
+                }
             }
-
-            input = scanner.nextLine().split(" ");
-
-            command = input[0];
         }
     }
 }

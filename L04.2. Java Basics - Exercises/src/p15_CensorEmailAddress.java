@@ -6,26 +6,25 @@ public class p15_CensorEmailAddress {
 
         Scanner scanner = new Scanner(System.in);
 
-        String emailAddress = scanner.nextLine();
+        String email = scanner.nextLine();
 
-        String[] emailAddressTokens = emailAddress.split("@");
+        String[] emailTokens = email.split("@");
 
-        String name = emailAddressTokens[0];
-        String domain = '@' + emailAddressTokens[1];
+        int usernameLength = emailTokens[0].length();
 
         String replacement = "";
 
-        for (int index = 0; index < name.length(); index++) {
+        for (int index = 0; index < usernameLength; index++) {
 
             replacement += '*';
         }
 
+        String domain = '@' + emailTokens[1];
+
         replacement += domain;
 
-        String email = scanner.nextLine();
+        String censoredEmail = scanner.nextLine().replaceAll(email, replacement);
 
-        String result = email.replaceAll(emailAddress, replacement);
-
-        System.out.println(result);
+        System.out.println(censoredEmail);
     }
 }

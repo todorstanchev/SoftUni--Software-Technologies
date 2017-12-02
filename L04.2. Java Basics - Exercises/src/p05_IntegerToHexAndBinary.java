@@ -6,9 +6,12 @@ public class p05_IntegerToHexAndBinary {
 
         Scanner scanner = new Scanner(System.in);
 
-        int decimalNumber = Integer.parseInt(scanner.nextLine());
+        int decimalNum = Integer.parseInt(scanner.nextLine());
 
-        System.out.println(Integer.toHexString(decimalNumber).toUpperCase());
-        System.out.println(Integer.toBinaryString(decimalNumber));
+        String hex = Integer.toHexString(decimalNum);
+        String binary = Integer.toBinaryString(decimalNum);
+
+        System.out.println(hex.toUpperCase());
+        System.out.println(binary);
     }
 }

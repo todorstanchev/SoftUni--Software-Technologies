@@ -8,13 +8,13 @@ public class p20_CountWorkingDays {
 
         Scanner scanner = new Scanner(System.in);
 
-        SimpleDateFormat formatDate = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
         Calendar currentDate = Calendar.getInstance();
-        currentDate.setTime(formatDate.parse(scanner.nextLine()));
+        currentDate.setTime(dateFormat.parse(scanner.nextLine()));
 
         Calendar endDate = Calendar.getInstance();
-        endDate.setTime(formatDate.parse(scanner.nextLine()));
+        endDate.setTime(dateFormat.parse(scanner.nextLine()));
 
         List<Calendar> holidays = new ArrayList<>();
 
@@ -23,17 +23,17 @@ public class p20_CountWorkingDays {
             holidays.add(Calendar.getInstance());
         }
 
-        holidays.get(0).setTime(formatDate.parse("01-01-2016"));
-        holidays.get(1).setTime(formatDate.parse("03-03-2016"));
-        holidays.get(2).setTime(formatDate.parse("01-05-2016"));
-        holidays.get(3).setTime(formatDate.parse("06-05-2016"));
-        holidays.get(4).setTime(formatDate.parse("24-05-2016"));
-        holidays.get(5).setTime(formatDate.parse("06-09-2016"));
-        holidays.get(6).setTime(formatDate.parse("22-09-2016"));
-        holidays.get(7).setTime(formatDate.parse("01-10-2016"));
-        holidays.get(8).setTime(formatDate.parse("24-12-2016"));
-        holidays.get(9).setTime(formatDate.parse("25-12-2016"));
-        holidays.get(10).setTime(formatDate.parse("26-12-2016"));
+        holidays.get(0).setTime(dateFormat.parse("01-01-2016"));
+        holidays.get(1).setTime(dateFormat.parse("03-03-2016"));
+        holidays.get(2).setTime(dateFormat.parse("01-05-2016"));
+        holidays.get(3).setTime(dateFormat.parse("06-05-2016"));
+        holidays.get(4).setTime(dateFormat.parse("24-05-2016"));
+        holidays.get(5).setTime(dateFormat.parse("06-09-2016"));
+        holidays.get(6).setTime(dateFormat.parse("22-09-2016"));
+        holidays.get(7).setTime(dateFormat.parse("01-10-2016"));
+        holidays.get(8).setTime(dateFormat.parse("24-12-2016"));
+        holidays.get(9).setTime(dateFormat.parse("25-12-2016"));
+        holidays.get(10).setTime(dateFormat.parse("26-12-2016"));
 
         int workingDaysCount = 0;
 

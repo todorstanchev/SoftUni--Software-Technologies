@@ -10,6 +10,7 @@ public class p10_IndexOfLetters {
         char[] alphabet = new char[26];
 
         for (int index = 0; index < alphabet.length; index++) {
+
             alphabet[index] = (char) ('a' + index);
         }
 
@@ -19,11 +20,9 @@ public class p10_IndexOfLetters {
 
             char currentChar = word.charAt(pos);
 
-            System.out.println(
-                    String.format(
-                            "%c -> %d",
-                            currentChar,
-                            Arrays.binarySearch(alphabet, currentChar)));
+            int currentCharIndex = Arrays.binarySearch(alphabet, currentChar);
+
+            System.out.println(currentChar + " -> " + currentCharIndex);
         }
     }
 }

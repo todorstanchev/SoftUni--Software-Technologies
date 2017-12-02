@@ -6,22 +6,24 @@ public class p04_VowelOrDigit {
 
         Scanner scanner = new Scanner(System.in);
 
-        String input = scanner.nextLine();
+        String symbol = scanner.nextLine();
 
-        char symbol = input.charAt(0);
+        String vowels = "aeiouy";
 
-        if (symbol == 'a' || symbol == 'e' || symbol == 'i' ||
-                symbol == 'o' || symbol == 'u' || symbol == 'y') {
+        String result = "";
 
-            System.out.println("vowel");
+        if (vowels.contains(symbol)) {
 
-        } else if (Character.isDigit(symbol)) {
+            result = "vowel";
 
-            System.out.println("digit");
+        } else if (Character.isDigit(symbol.charAt(0))) {
+
+            result = "digit";
 
         } else {
-
-            System.out.println("other");
+            result = "other";
         }
+
+        System.out.println(result);
     }
 }

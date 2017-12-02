@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class p09_MostFrequentNumber {
@@ -7,20 +6,19 @@ public class p09_MostFrequentNumber {
 
         Scanner scanner = new Scanner(System.in);
 
-        int[] sequence = Arrays.stream(scanner.nextLine().split(" "))
-                .mapToInt(Integer::parseInt)
-                .toArray();
+        String[] elements = scanner.nextLine().split(" ");
 
         int maxCounter = 0;
-        int mostFrequentNumber = sequence[0];
 
-        for (int index = 0; index < sequence.length; index++) {
+        String mostFrequentElement = elements[0];
+
+        for (int index = 0; index < elements.length; index++) {
 
             int counter = 1;
 
-            for (int pos = index + 1; pos < sequence.length; pos++) {
+            for (int pos = index + 1; pos < elements.length; pos++) {
 
-                if (sequence[index] == sequence[pos]) {
+                if (elements[index].equals(elements[pos])) {
 
                     counter++;
                 }
@@ -29,10 +27,10 @@ public class p09_MostFrequentNumber {
             if (counter > maxCounter) {
 
                 maxCounter = counter;
-                mostFrequentNumber = sequence[index];
+                mostFrequentElement = elements[index];
             }
         }
 
-        System.out.println(mostFrequentNumber);
+        System.out.println(mostFrequentElement);
     }
 }

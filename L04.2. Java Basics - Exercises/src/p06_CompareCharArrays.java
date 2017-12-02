@@ -6,45 +6,15 @@ public class p06_CompareCharArrays {
 
         Scanner scanner = new Scanner(System.in);
 
-        char[] firstArr = scanner.nextLine()
-                .replaceAll(" ", "")
-                .toCharArray();
+        String firstStr = scanner.nextLine();
+        String secondStr = scanner.nextLine();
 
-        char[] secondArr = scanner.nextLine()
-                .replaceAll(" ", "")
-                .toCharArray();
+        int comparisonResult = firstStr.compareTo(secondStr);
 
-        int minLenght = Math.min(firstArr.length, secondArr.length);
+        firstStr = firstStr.replaceAll(" ", "");
+        secondStr = secondStr.replaceAll(" ", "");
 
-        for (int index = 0; index < minLenght; index++) {
-
-            if (firstArr[index] > secondArr[index]) {
-
-                System.out.println(secondArr);
-                System.out.println(firstArr);
-
-                break;
-
-            } else if (firstArr[index] < secondArr[index]) {
-
-                System.out.println(firstArr);
-                System.out.println(secondArr);
-
-                break;
-
-            } else {
-
-                if (index == minLenght - 1 && minLenght == firstArr.length) {
-
-                    System.out.println(firstArr);
-                    System.out.println(secondArr);
-
-                } else if (index == minLenght - 1 && minLenght == secondArr.length) {
-
-                    System.out.println(secondArr);
-                    System.out.println(firstArr);
-                }
-            }
-        }
+        System.out.println(comparisonResult < 0 ? firstStr : secondStr);
+        System.out.println(comparisonResult < 0 ? secondStr : firstStr);
     }
 }

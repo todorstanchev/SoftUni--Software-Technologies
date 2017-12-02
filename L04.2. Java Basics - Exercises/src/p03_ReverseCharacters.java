@@ -6,10 +6,10 @@ public class p03_ReverseCharacters {
 
         Scanner scanner = new Scanner(System.in);
 
-        String firstChar = scanner.nextLine();
-        String secondChar = scanner.nextLine();
-        String thirdChar = scanner.nextLine();
+        String firstLetter = scanner.nextLine();
+        String secondLetter = scanner.nextLine();
+        String thirdLetter = scanner.nextLine();
 
-        System.out.printf(thirdChar + secondChar + firstChar);
+        System.out.printf(thirdLetter + secondLetter + firstLetter);
     }
 }

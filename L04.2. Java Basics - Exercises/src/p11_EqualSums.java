@@ -7,36 +7,24 @@ public class p11_EqualSums {
 
         Scanner scanner = new Scanner(System.in);
 
-        int[] nums = Arrays.stream(scanner.nextLine().split(" "))
+        int[] numbers = Arrays.stream(scanner.nextLine()
+                .split(" "))
                 .mapToInt(Integer::parseInt)
                 .toArray();
 
-        if (nums.length == 1) {
-            System.out.println(0);
+        for (int index = 0; index < numbers.length; index++) {
 
-            return;
-        }
+            int leftPartSum = Arrays.stream(numbers)
+                    .limit(index)
+                    .sum();
 
-        for (int index = 0; index < nums.length; index++) {
+            int rightPartSum = Arrays.stream(numbers)
+                    .skip(index + 1)
+                    .sum();
 
-            int leftSum = 0;
-
-            for (int pos = 0; pos < index; pos++) {
-
-                leftSum += nums[pos];
-            }
-
-            int rightSum = 0;
-
-            for (int cnt = index + 1; cnt < nums.length; cnt++) {
-
-                rightSum += nums[cnt];
-            }
-
-            if (leftSum == rightSum) {
+            if (leftPartSum == rightPartSum) {
 
                 System.out.println(index);
-
                 return;
             }
         }
