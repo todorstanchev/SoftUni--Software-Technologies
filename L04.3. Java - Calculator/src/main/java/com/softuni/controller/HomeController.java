@@ -12,7 +12,9 @@ public class HomeController {
 
     @GetMapping("/")
     public String index(Model model) {
+
         model.addAttribute("operator", "+");
+
         model.addAttribute("view", "views/calculatorForm");
 
         return "base-layout";
@@ -28,12 +30,14 @@ public class HomeController {
 
         try {
             num1 = Double.parseDouble(leftOperand);
+
         } catch (NumberFormatException ex) {
             num1 = 0;
         }
 
         try {
             num2 = Double.parseDouble(rightOperand);
+
         } catch (NumberFormatException ex) {
             num2 = 0;
         }

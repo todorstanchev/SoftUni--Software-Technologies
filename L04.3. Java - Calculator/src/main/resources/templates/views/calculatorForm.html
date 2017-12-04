@@ -7,7 +7,6 @@
             </div>
         </div>
 
-
         <div class="form-group">
             <div class="col-sm-4 ">
                 <select class="form-control" name="operator">
@@ -16,6 +15,7 @@
                     <option value="*" th:selected="${operator.equals('*')}">*</option>
                     <option value="/" th:selected="${operator.equals('/')}">/</option>
                     <option value="^" th:selected="${operator.equals('^')}">^</option>
+                    <option value="%" th:selected="${operator.equals('%')}">%</option>
                 </select>
             </div>
         </div>
