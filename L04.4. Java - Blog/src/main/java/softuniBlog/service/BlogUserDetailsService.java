@@ -14,32 +14,30 @@ import java.util.stream.Collectors;
 
 @Service("blogUserDetailsService")
 public class BlogUserDetailsService implements UserDetailsService {
+	private final UserRepository userRepository;
 
-    private final UserRepository userRepository;
+	public BlogUserDetailsService(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
 
-    public BlogUserDetailsService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+	@Override
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		User user = userRepository.findByEmail(email);
 
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		if (user == null) {
+			throw new UsernameNotFoundException("Invalid User");
+		} else {
+			Set<GrantedAuthority> grantedAuthorities = user.getRoles()
+					.stream()
+					.map(role -> new SimpleGrantedAuthority(role.getName()))
+					.collect(Collectors.toSet());
 
-        User user = userRepository.findByEmail(email);
-
-        if (user == null) {
-            throw new UsernameNotFoundException("Invalid User");
-        } else {
-            Set<GrantedAuthority> grantedAuthorities = user.getRoles()
-                    .stream()
-                    .map(role -> new SimpleGrantedAuthority(role.getName()))
-                    .collect(Collectors.toSet());
-
-            return new org
-                    .springframework
-                    .security
-                    .core
-                    .userdetails
-                    .User(user.getEmail(), user.getPassword(), grantedAuthorities);
-        }
-    }
+			return new org
+					.springframework
+					.security
+					.core
+					.userdetails
+					.User(user.getEmail(), user.getPassword(), grantedAuthorities);
+		}
+	}
 }

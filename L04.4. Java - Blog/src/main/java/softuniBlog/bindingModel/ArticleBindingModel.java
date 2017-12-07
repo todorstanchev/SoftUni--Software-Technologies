@@ -3,8 +3,10 @@ package softuniBlog.bindingModel;
 import javax.validation.constraints.NotNull;
 
 public class ArticleBindingModel {
+
     @NotNull
     private String title;
+
     @NotNull
     private String content;
 

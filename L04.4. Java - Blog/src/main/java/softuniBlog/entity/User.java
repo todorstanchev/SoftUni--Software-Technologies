@@ -21,6 +21,7 @@ public class User {
     private Set<Article> articles;
 
     public User(String email, String fullName, String password) {
+
         this.email = email;
         this.fullName = fullName;
         this.password = password;
@@ -50,7 +51,9 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
 
-    }@Column(name = "fullName", nullable = false)
+    }
+
+    @Column(name = "fullName", nullable = false)
     public String getFullName() {
         return fullName;
     }
@@ -69,7 +72,7 @@ public class User {
     }
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_roles")
+    @JoinTable(name = "users_roles")
     public Set<Role> getRoles() {
         return roles;
     }

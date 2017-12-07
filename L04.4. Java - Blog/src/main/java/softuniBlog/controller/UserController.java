@@ -1,9 +1,9 @@
 package softuniBlog.controller;
 
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,16 +20,15 @@ import softuniBlog.entity.User;
 import softuniBlog.repository.RoleRepository;
 import softuniBlog.repository.UserRepository;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class UserController {
 
     @Autowired
-    private RoleRepository roleRepository;
+    RoleRepository roleRepository;
     @Autowired
-    private UserRepository userRepository;
+    UserRepository userRepository;
 
     @GetMapping("/register")
     public String register(Model model) {
@@ -39,9 +38,9 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String registerProcess(UserBindingModel userBindingModel) {
+    public String registerProcess(UserBindingModel userBindingModel){
 
-        if (!userBindingModel.getPassword().equals(userBindingModel.getConfirmPassword())) {
+        if(!userBindingModel.getPassword().equals(userBindingModel.getConfirmPassword())){
             return "redirect:/register";
         }
 
@@ -50,9 +49,11 @@ public class UserController {
         User user = new User(
                 userBindingModel.getEmail(),
                 userBindingModel.getFullName(),
-                bCryptPasswordEncoder.encode(userBindingModel.getPassword()));
+                bCryptPasswordEncoder.encode(userBindingModel.getPassword())
+        );
 
         Role userRole = this.roleRepository.findByName("ROLE_USER");
+
         user.addRole(userRole);
 
         this.userRepository.saveAndFlush(user);
@@ -61,15 +62,14 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String login(Model model) {
+    public String login(Model model){
         model.addAttribute("view", "user/login");
 
         return "base-layout";
     }
 
-    @RequestMapping(value = "logout", method = RequestMethod.GET)
-    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
-
+    @RequestMapping(value="/logout", method = RequestMethod.GET)
+    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         if (auth != null) {
@@ -81,8 +81,7 @@ public class UserController {
 
     @GetMapping("/profile")
     @PreAuthorize("isAuthenticated()")
-    public String profilePage(Model model) {
-
+    public String profilePage(Model model){
         UserDetails principal = (UserDetails) SecurityContextHolder.getContext()
                 .getAuthentication()
                 .getPrincipal();
@@ -95,3 +94,4 @@ public class UserController {
         return "base-layout";
     }
 }
+

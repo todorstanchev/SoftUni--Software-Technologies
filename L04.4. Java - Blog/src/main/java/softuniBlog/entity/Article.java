@@ -12,7 +12,17 @@ public class Article {
 
     private String content;
 
-    private  User author;
+    private User author;
+
+    public Article(String title, String content, User author) {
+
+        this.title = title;
+        this.content = content;
+        this.author = author;
+    }
+
+    public Article() {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,17 +62,8 @@ public class Article {
         this.author = author;
     }
 
-    public Article(String title, String content, User author) {
-        this.title = title;
-        this.content = content;
-        this.author = author;
-    }
-
-    public Article() {
-    }
-
     @Transient
-    public  String getSummary() {
+    public String getSummary() {
 
         return this.getContent().substring(0, this.getContent().length() / 2) + "...";
     }
