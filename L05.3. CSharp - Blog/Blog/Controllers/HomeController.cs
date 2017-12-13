@@ -1,7 +1,7 @@
-﻿using System.Web.Mvc;
-
-namespace Blog.Controllers
+﻿namespace Blog.Controllers
 {
+    using System.Web.Mvc;
+
     public class HomeController : Controller
     {
         public ActionResult Index()

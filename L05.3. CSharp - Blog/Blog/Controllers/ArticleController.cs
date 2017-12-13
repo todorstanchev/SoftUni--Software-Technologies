@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using Blog.Models;
-
-namespace Blog.Controllers
+﻿namespace Blog.Controllers
 {
+    using System.Data.Entity;
+    using System.Linq;
+    using System.Net;
+    using System.Web.Mvc;
+    using Models;
+
     public class ArticleController : Controller
     {
         // GET: Article
@@ -67,8 +64,6 @@ namespace Blog.Controllers
             return View();
         }
 
-        //
-        // POST: Article/Create
         [HttpPost]
         [Authorize]
         public ActionResult Create(Article article)
@@ -129,8 +124,6 @@ namespace Blog.Controllers
             }
         }
 
-        //
-        // POST: Article/Delete
         [HttpPost]
         [ActionName("Delete")]
         public ActionResult DeleteConfirmed(int? id)
@@ -192,18 +185,18 @@ namespace Blog.Controllers
                 }
 
                 // Create the view model
-                var model = new ArticleViewModel();
-                model.Id = article.Id;
-                model.Title = article.Title;
-                model.Content = article.Content;
+                var model = new ArticleViewModel
+                {
+                    Id = article.Id,
+                    Title = article.Title,
+                    Content = article.Content
+                };
 
                 // Pass the view model to view
                 return View(model);
             }
         }
 
-        //
-        // POST: Article/Edit
         [HttpPost]
         public ActionResult Edit(ArticleViewModel model)
         {
