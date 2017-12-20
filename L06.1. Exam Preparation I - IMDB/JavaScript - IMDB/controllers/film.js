@@ -1,98 +1,43 @@
 const Film = require('../models/Film');
 
 module.exports = {
-
     index: (req, res) => {
-
         Film.find().then(films => {
-
-            return res.render('film/index', {'films': films});
-
-        }).catch(err => {
-
-            return res.send("error");
+            res.render('film/index', {'films': films});
         });
     },
-
     createGet: (req, res) => {
-
         res.render('film/create');
     },
-
     createPost: (req, res) => {
-
         let film = req.body;
-
-        Film.create(film).then(film => {
-
-            res.redirect('/');
-
-        }).catch(err => {
-
-            film.error = 'Cannot create film.';
-
-            res.render('film/create', film);
-        });
+        Film.create(film).then(data => {
+            res.redirect("/");
+        }).catch(res.redirect('/'));
     },
-
     editGet: (req, res) => {
-
         let id = req.params.id;
-
         Film.findById(id).then(film => {
-
-            if (film) {
-
-                res.render('film/edit', film);
-
-            } else {
-                res.redirect('/');
-            }
-        }).catch(err => res.redirect('/'));
-    },
-
-    editPost: (req, res) => {
-
-        let id = req.params.id;
-        let film = req.body;
-
-        Film.findByIdAndUpdate(id, film, {runValidators: true}).then(film => {
-
-            res.redirect('/');
-
-        }).catch(err => {
-
-            film.id = id;
-            film.error = "Cannot edit film.";
-
             res.render('film/edit', film);
         });
     },
-
-    deleteGet: (req, res) => {
-
+    editPost: (req, res) => {
         let id = req.params.id;
-
-        Film.findById(id).then(film => {
-
-            if (film) {
-
-                res.render('film/delete', film);
-
-            } else {
-                res.redirect('/');
-            }
-        }).catch(err => res.redirect('/'));
+        let film = req.body;
+        Film.findByIdAndUpdate(id, film, {runValidators: true}).then(data => {
+            res.redirect("/");
+        }).catch(res.redirect('/'));
     },
-
-    deletePost: (req, res) => {
-
+    deleteGet: (req, res) => {
         let id = req.params.id;
-
-        Film.findByIdAndRemove(id).then(film => {
-
+        Film.findById(id).then(film => {
+            res.render('film/delete', film);
+        });
+    },
+    deletePost: (req, res) => {
+        let id = req.params.id;
+        Film.findByIdAndRemove(id).then(data => {
             res.redirect('/');
-
-        }).catch(err => res.redirect('/'));
+        });
     }
 };

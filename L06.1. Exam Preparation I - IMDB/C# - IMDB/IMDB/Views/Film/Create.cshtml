@@ -13,23 +13,14 @@
         {
             @Html.AntiForgeryToken()
 
-            @Html.ValidationSummary()
-
             <label for="name">Name</label>
-            <input type="text" id="name" name="name" value="@Model.Name">
-            @Html.ValidationMessageFor(m => m.Name)
-
+            <input type="text" id="name" name="name">
             <label for="genre">Genre</label>
-            <input type="text" id="genre" name="genre" value="@Model.Genre">
-            @Html.ValidationMessageFor(m => m.Genre)
-
+            <input type="text" id="genre" name="genre">
             <label for="director">Director</label>
-            <input type="text" id="director" name="director" value="@Model.Director">
-            @Html.ValidationMessageFor(m => m.Director)
-
+            <input type="text" id="director" name="director">
             <label for="year">Year</label>
-            <input type="text" id="year" name="year" value="@Model.Year">
-            @Html.ValidationMessageFor(m => m.Year)
+            <input type="text" id="year" name="year">
 
             <button type="submit" class="">Create</button>
             <button onclick="location.href='/';return false;" class="cancel">Cancel</button>

@@ -3,7 +3,6 @@ package imdb.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,7 +10,6 @@ import imdb.bindingModel.FilmBindingModel;
 import imdb.entity.Film;
 import imdb.repository.FilmRepository;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -21,7 +19,6 @@ public class FilmController {
 
     @Autowired
     public FilmController(FilmRepository filmRepository) {
-
         this.filmRepository = filmRepository;
     }
 
@@ -39,26 +36,13 @@ public class FilmController {
     @GetMapping("/create")
     public String create(Model model) {
 
-        model.addAttribute("film", new FilmBindingModel());
         model.addAttribute("view", "film/create");
 
         return "base-layout";
     }
 
     @PostMapping("/create")
-    public String createProcess(
-            Model model,
-            @Valid FilmBindingModel filmBindingModel,
-            BindingResult bindingResult) {
-
-        if (bindingResult.hasErrors()) {
-
-            model.addAttribute("message", "Invalid data.");
-            model.addAttribute("film", filmBindingModel);
-            model.addAttribute("view", "film/create");
-
-            return "base-layout";
-        }
+    public String createProcess(Model model, FilmBindingModel filmBindingModel) {
 
         Film film = new Film();
 
@@ -77,11 +61,6 @@ public class FilmController {
 
         Film film = this.filmRepository.findOne(id);
 
-        if (film == null) {
-
-            return "redirect:/";
-        }
-
         model.addAttribute("film", film);
         model.addAttribute("view", "film/edit");
 
@@ -89,20 +68,7 @@ public class FilmController {
     }
 
     @PostMapping("/edit/{id}")
-    public String editProcess(
-            Model model,
-            @PathVariable int id,
-            @Valid FilmBindingModel filmBindingModel,
-            BindingResult bindingResult) {
-
-        if (bindingResult.hasErrors()) {
-
-            model.addAttribute("message", "Invalid data.");
-            model.addAttribute("film", filmBindingModel);
-            model.addAttribute("view", "film/edit");
-
-            return "base-layout";
-        }
+    public String editProcess(Model model, @PathVariable int id, FilmBindingModel filmBindingModel) {
 
         Film film = this.filmRepository.findOne(id);
 
@@ -123,11 +89,6 @@ public class FilmController {
     public String delete(Model model, @PathVariable int id) {
 
         Film film = this.filmRepository.findOne(id);
-
-        if (film == null) {
-
-            return "redirect:/";
-        }
 
         model.addAttribute("film", film);
         model.addAttribute("view", "film/delete");

@@ -15,7 +15,7 @@ public class Film {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(Integer id) {
@@ -24,7 +24,7 @@ public class Film {
 
     @Column(nullable = false)
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
@@ -33,7 +33,7 @@ public class Film {
 
     @Column(nullable = false)
     public String getGenre() {
-        return this.genre;
+        return genre;
     }
 
     public void setGenre(String genre) {
@@ -42,7 +42,7 @@ public class Film {
 
     @Column(nullable = false)
     public String getDirector() {
-        return this.director;
+        return director;
     }
 
     public void setDirector(String director) {
@@ -51,7 +51,7 @@ public class Film {
 
     @Column(nullable = false)
     public int getYear() {
-        return this.year;
+        return year;
     }
 
     public void setYear(int year) {

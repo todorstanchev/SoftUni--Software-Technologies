@@ -1,8 +1,5 @@
 package imdb.bindingModel;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 public class FilmBindingModel {
 
     private String name;
@@ -10,30 +7,24 @@ public class FilmBindingModel {
     private String director;
     private int year;
 
-    @NotNull
-    @Size(min = 1)
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    @NotNull
-    @Size(min = 1)
     public String getGenre() {
-        return this.genre;
+        return genre;
     }
 
     public void setGenre(String genre) {
         this.genre = genre;
     }
 
-    @NotNull
-    @Size(min = 1)
     public String getDirector() {
-        return this.director;
+        return director;
     }
 
     public void setDirector(String director) {
@@ -41,7 +32,7 @@ public class FilmBindingModel {
     }
 
     public int getYear() {
-        return this.year;
+        return year;
     }
 
     public void setYear(int year) {

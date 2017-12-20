@@ -3,7 +3,6 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
  * Film
@@ -16,8 +15,8 @@ class Film
     /**
      * @var int
      *
+     * @ORM\Column(type="integer")
      * @ORM\Id
-     * @ORM\Column(name="id", type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
@@ -25,39 +24,32 @@ class Film
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
-     * @NotBlank
+     * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="genre", type="string", length=255)
-     * @NotBlank
+     * @ORM\Column(type="string", length=255)
      */
     private $genre;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="director", type="string", length=255)
-     * @NotBlank
+     * @ORM\Column(type="string", length=255)
      */
     private $director;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="year", type="integer")
-     * @NotBlank
+     * @ORM\Column(type="integer")
      */
     private $year;
 
-
     /**
-     * Get id
-     *
      * @return int
      */
     public function getId()
@@ -66,8 +58,14 @@ class Film
     }
 
     /**
-     * Get name
-     *
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
      * @return string
      */
     public function getName()
@@ -76,22 +74,14 @@ class Film
     }
 
     /**
-     * Set name
-     *
      * @param string $name
-     *
-     * @return Film
      */
     public function setName($name)
     {
         $this->name = $name;
-
-        return $this;
     }
 
     /**
-     * Get genre
-     *
      * @return string
      */
     public function getGenre()
@@ -100,22 +90,14 @@ class Film
     }
 
     /**
-     * Set genre
-     *
      * @param string $genre
-     *
-     * @return Film
      */
     public function setGenre($genre)
     {
         $this->genre = $genre;
-
-        return $this;
     }
 
     /**
-     * Get director
-     *
      * @return string
      */
     public function getDirector()
@@ -124,22 +106,14 @@ class Film
     }
 
     /**
-     * Set director
-     *
      * @param string $director
-     *
-     * @return Film
      */
     public function setDirector($director)
     {
         $this->director = $director;
-
-        return $this;
     }
 
     /**
-     * Get year
-     *
      * @return int
      */
     public function getYear()
@@ -148,16 +122,11 @@ class Film
     }
 
     /**
-     * Set year
-     *
-     * @param integer $year
-     *
-     * @return Film
+     * @param int $year
      */
     public function setYear($year)
     {
         $this->year = $year;
-
-        return $this;
     }
 }
+

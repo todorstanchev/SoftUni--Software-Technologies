@@ -40,27 +40,19 @@ class FilmController extends Controller
 
         $form->handleRequest($request);
 
-        $errorMsg = "";
+        if ($form->isSubmitted() && $form->isValid()) {
 
-        if ($form->isSubmitted()) {
+            $em = $this->getDoctrine()->getManager();
 
-            if ($form->isValid()) {
+            $em->persist($film);
+            $em->flush();
 
-                $em = $this->getDoctrine()->getManager();
-
-                $em->persist($film);
-                $em->flush();
-
-                return $this->redirect('/');
-
-            } else {
-                $errorMsg = "Invalid form data";
-            }
+            return $this->redirect('/');
         }
 
         return $this->render(
             'film/create.html.twig',
-            ['film' => $film, 'form' => $form->createView(), 'errorMsg' => $errorMsg]
+            ['form' => $form->createView()]
         );
     }
 
@@ -71,43 +63,29 @@ class FilmController extends Controller
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public
-    function edit($id, Request $request)
+    public function edit($id, Request $request)
     {
         $film = $this->getDoctrine()
             ->getRepository(Film::class)
             ->find($id);
 
-        if ($film == null) {
-
-            return $this->redirect('/');
-        }
-
         $form = $this->createForm(FilmType::class, $film);
 
         $form->handleRequest($request);
 
-        $errorMsg = "";
+        if ($form->isSubmitted() && $form->isValid()) {
 
-        if ($form->isSubmitted()) {
+            $em = $this->getDoctrine()->getManager();
 
-            if ($form->isValid()) {
+            $em->merge($film);
+            $em->flush();
 
-                $em = $this->getDoctrine()->getManager();
-
-                $em->merge($film);
-                $em->flush();
-
-                return $this->redirect('/');
-
-            } else {
-                $errorMsg = "Invalid form data";
-            }
+            return $this->redirect('/');
         }
 
         return $this->render(
             'film/edit.html.twig',
-            ['film' => $film, 'form' => $form->createView(), 'errorMsg' => $errorMsg]
+            ['film' => $film, 'form' => $form->createView()]
         );
     }
 
@@ -118,17 +96,11 @@ class FilmController extends Controller
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public
-    function delete($id, Request $request)
+    public function delete($id, Request $request)
     {
         $film = $this->getDoctrine()
             ->getRepository(Film::class)
             ->find($id);
-
-        if ($film == null) {
-
-            return $this->redirect('/');
-        }
 
         $form = $this->createForm(FilmType::class, $film);
 

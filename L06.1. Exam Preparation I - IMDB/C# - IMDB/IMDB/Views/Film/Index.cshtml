@@ -20,7 +20,7 @@
                 <th>Year</th>
                 <th>Actions</th>
             </tr>
-            @foreach (var film in Model)
+            @foreach (var film in Model.ToList())
             {
                 <tr>
                     <td>@film.Name</td>

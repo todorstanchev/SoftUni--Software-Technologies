@@ -1,7 +1,7 @@
-﻿namespace IMDB.Models
-{
-    using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
+namespace IMDB.Models
+{
     public class Film
     {
         public int Id { get; set; }

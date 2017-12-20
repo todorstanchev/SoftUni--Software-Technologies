@@ -27,6 +27,8 @@ class FilmType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(['data_class' => 'AppBundle\Entity\Film']);
+        $resolver->setDefaults(array(
+            'data_class' => 'AppBundle\Entity\Film'
+        ));
     }
 }
